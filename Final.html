@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundación Genoveva A.C. | Salud Sexual Integral y Prevención del VIH en SLP</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fdf2f8',
+              100: '#fce7f3',
+              200: '#fbcfe8',
+              300: '#f472b6',
+              500: '#ec4899',
+              600: '#db2777',
+              700: '#be185d',
+              800: '#9d174d',
+              900: '#831843',
+            },
+            navy: {
+              800: '#1e1b4b',
+              900: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+    }
+    .chat-shadow {
+      box-shadow: 0 16px 40px rgba(157, 23, 77, 0.2), 0 4px 12px rgba(15, 23, 42, 0.1);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    /* Tarjetas de mitos: mostrar cara trasera al voltear */
+    .myth-card .myth-back { display: none; }
+    .myth-card.flipped .myth-front { display: none; }
+    .myth-card.flipped .myth-back { display: block; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-brand-500 selection:text-white relative">
+
+  <!-- Top Banner de Confidencialidad -->
+  <div class="bg-navy-900 text-slate-200 text-xs py-2 px-4 text-center border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Atención 100% Confidencial, Gratuita y Libre de Discriminación en San Luis Potosí.</span>
+      <a href="tel:4443009306" class="underline hover:text-brand-300 font-semibold ml-1">Línea Directa: (444) 300-9306</a>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-ribbon"></i>
+        </div>
+        <div>
+          <span class="text-xl font-extrabold text-navy-900 tracking-tight block leading-none">Fundación Genoveva</span>
+          <span class="text-xs font-semibold text-brand-600 tracking-wider uppercase">A.C. · Salud & Prevención</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+        <a href="#inicio" class="hover:text-brand-600 transition-colors">Inicio</a>
+        <a href="#servicios" class="hover:text-brand-600 transition-colors">Servicios</a>
+        <a href="#mitos" class="hover:text-brand-600 transition-colors">Mitos y Realidades</a>
+        <a href="#nosotros" class="hover:text-brand-600 transition-colors">Nosotros</a>
+        <a href="#contacto" class="hover:text-brand-600 transition-colors">Ubicación</a>
+      </nav>
+
+      <!-- CTA Nav -->
+      <div class="hidden md:flex items-center gap-3">
+        <button onclick="startAppointmentFlow('general')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 transition-all flex items-center gap-2">
+          <i class="fa-regular fa-calendar-check"></i>
+          Agendar Cita en Chat
+        </button>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-navy-900 hover:bg-slate-100">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Panel -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+      <a href="#inicio" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Inicio</a>
+      <a href="#servicios" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Servicios</a>
+      <a href="#mitos" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Mitos y Realidades</a>
+      <a href="#nosotros" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Nosotros</a>
+      <a href="#contacto" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Ubicación</a>
+      <button onclick="startAppointmentFlow('general')" class="block w-full text-center bg-brand-600 text-white font-semibold py-3 rounded-xl mt-4">Agendar Cita Confidencial</button>
+    </div>
+  </header>
+
+  <section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-brand-50/50 via-white to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Left Column -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-800 text-xs font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-heart-pulse"></i> San Luis Potosí, México
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight leading-tight">
+            Tu salud sexual en un espacio <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-800">seguro, humano y confidencial.</span>
+          </h1>
+
+          <p class="text-lg text-slate-600 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Acompañamiento empático, pruebas rápidas de VIH e ITS gratuitas, orientación en PrEP/PEP y combate activo al estigma en honor a la memoria de Genoveva Ramos Urrutia.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <button onclick="startAppointmentFlow('general')" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-brand-600/30 hover:shadow-brand-600/40 transition-all flex items-center justify-center gap-3">
+              <i class="fa-solid fa-calendar-day"></i>
+              Agendar Cita Anónima
+            </button>
+            <button onclick="toggleChatbot(true)" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-navy-900 font-bold text-base px-7 py-4 rounded-2xl border-2 border-slate-200 hover:border-brand-300 transition-all flex items-center justify-center gap-3">
+              <i class="fa-solid fa-robot text-brand-600"></i>
+              Consultar GenoBot IA
+            </button>
+          </div>
+
+          <!-- Feature badges -->
+          <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200/80 max-w-xl mx-auto lg:mx-0">
+            <div class="text-center lg:text-left">
+              <span class="block font-extrabold text-xl sm:text-2xl text-navy-900">100%</span>
+              <span class="text-xs text-slate-500 font-medium">Confidencial</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block font-extrabold text-xl sm:text-2xl text-navy-900">Gratuito</span>
+              <span class="text-xs text-slate-500 font-medium">Pruebas & Guía</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block font-extrabold text-xl sm:text-2xl text-navy-900">Sin Juicios</span>
+              <span class="text-xs text-slate-500 font-medium">Espacio Seguro</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column / Hero Visual -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand-500 to-indigo-500 opacity-20 blur-xl"></div>
+
+            <div class="relative bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 flex items-center justify-center text-brand-700 font-bold text-xl">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-navy-900 text-lg">Atención Integral hoy</h3>
+                  <p class="text-xs text-slate-500">Calle Patria #180, Col. Morales</p>
+                </div>
+              </div>
+
+              <!-- Fast Info Box -->
+              <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-3">
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-check-circle text-emerald-500 mt-1"></i>
+                  <p class="text-xs text-slate-600 font-medium"><strong class="text-slate-800">Resultados en 15-20 min:</strong> Pruebas dúo o individuales de VIH con orientación antes y después.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-check-circle text-emerald-500 mt-1"></i>
+                  <p class="text-xs text-slate-600 font-medium"><strong class="text-slate-800">Atención de Emergencia PEP:</strong> Guía inmediata antes de 72h tras relación de riesgo.</p>
+                </div>
+              </div>
+
+              <!-- Quick Action Card -->
+              <div class="p-4 rounded-2xl bg-gradient-to-r from-navy-900 to-navy-800 text-white space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-brand-300">¿Emergencia o Relación de Riesgo?</span>
+                  <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-medium">&lt; 72 Horas</span>
+                </div>
+                <p class="text-sm font-medium text-slate-200">Si tuviste una exposición reciente, solicita PEP de inmediato mediante el bot.</p>
+                <button onclick="triggerEmergencyFlow()" class="w-full mt-2 text-center text-xs bg-rose-600 hover:bg-rose-500 text-white font-bold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-triangle-exclamation animate-pulse"></i> Solicitud de Emergencia PEP
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Lo que hacemos por ti</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">Servicios integrales para cuidar tu salud sexual</p>
+        <p class="text-slate-600 text-base">Todos nuestros servicios son gratuitos, confidenciales y prestados en un marco estricto de respeto.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Service 1 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-vial-virus"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Pruebas Rápidas</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Detección confidencial y rápida de VIH e ITS mediante punción capilar. Resultados confiables en 15 minutos.
+            </p>
+          </div>
+          <button onclick="startAppointmentFlow('general')" class="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Solicitar cita <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-pills"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Guía PrEP y PEP</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Información, orientación y agendamiento de citas para Profilaxis Pre-Exposición (PrEP) y Emergencias (PEP).
+            </p>
+          </div>
+          <button onclick="showPrepInfo()" class="inline-flex items-center text-xs font-bold text-indigo-600 hover:text-indigo-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Consultar al GenoBot <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Acompañamiento</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Contención emocional y apoyo entre pares antes, durante y después de la prueba.
+            </p>
+          </div>
+          <a href="#contacto" class="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Saber más <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hospital-user"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Canalización Médica</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Vinculación directa con CAPASITS y servicios del sector salud de San Luis Potosí.
+            </p>
+          </div>
+          <a href="#contacto" class="inline-flex items-center text-xs font-bold text-amber-600 hover:text-amber-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Ver directorio <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mitos" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <span class="px-3 py-1 bg-brand-500/20 text-brand-300 border border-brand-500/30 rounded-full text-xs font-bold uppercase tracking-widest inline-block">Educación sin Estigma</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mitos vs. Realidades sobre el VIH</h2>
+        <p class="text-slate-400 text-base">Haz clic en cada tarjeta para conocer la realidad médica demostrada e informarte correctamente.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Myth Card 1 -->
+        <div onclick="flipCard(this)" class="myth-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-500/50 rounded-3xl p-6 transition-all duration-300 shadow-xl group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Mito Común</span>
+            <span class="text-xs text-slate-400 group-hover:text-brand-300 font-semibold"><i class="fa-solid fa-arrows-rotate mr-1"></i> Tocar para ver Realidad</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 mb-3">"El VIH se transmite por abrazos, besos o compartir vasos"</h3>
+          <div class="myth-front">
+            <p class="text-sm text-slate-400">El miedo al contagio por contacto cotidiano es uno de los mayores mitos que generan discriminación.</p>
+          </div>
+          <div class="myth-back pt-3 border-t border-slate-700/80 text-emerald-400 text-sm space-y-2">
+            <p class="font-bold"><i class="fa-solid fa-circle-check mr-1"></i> REALIDAD:</p>
+            <p class="text-slate-300 text-xs leading-relaxed">El VIH SOLO se transmite a través de fluidos específicos (sangre, semen, fluidos vaginales/rectales y leche materna). NO se transmite por saliva, sudor, abrazos ni alimentos.</p>
+          </div>
+        </div>
+
+        <!-- Myth Card 2 -->
+        <div onclick="flipCard(this)" class="myth-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-500/50 rounded-3xl p-6 transition-all duration-300 shadow-xl group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Mito Común</span>
+            <span class="text-xs text-slate-400 group-hover:text-brand-300 font-semibold"><i class="fa-solid fa-arrows-rotate mr-1"></i> Tocar para ver Realidad</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 mb-3">"Un diagnóstico de VIH es una sentencia de muerte"</h3>
+          <div class="myth-front">
+            <p class="text-sm text-slate-400">Muchas personas asocian el VIH con el desarrollo inevitable de SIDA o muerte inmediata.</p>
+          </div>
+          <div class="myth-back pt-3 border-t border-slate-700/80 text-emerald-400 text-sm space-y-2">
+            <p class="font-bold"><i class="fa-solid fa-circle-check mr-1"></i> REALIDAD:</p>
+            <p class="text-slate-300 text-xs leading-relaxed">Con el Tratamiento Antirretroviral (TAR) moderno, una persona con VIH tiene la misma expectativa y calidad de vida que cualquier otra persona.</p>
+          </div>
+        </div>
+
+        <!-- Myth Card 3 -->
+        <div onclick="flipCard(this)" class="myth-card cursor-pointer bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-500/50 rounded-3xl p-6 transition-all duration-300 shadow-xl group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Mito Común</span>
+            <span class="text-xs text-slate-400 group-hover:text-brand-300 font-semibold"><i class="fa-solid fa-arrows-rotate mr-1"></i> Tocar para ver Realidad</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 mb-3">"Si tengo VIH puedo transmitirlo aunque tome medicamentos"</h3>
+          <div class="myth-front">
+            <p class="text-sm text-slate-400">Existe desconocimiento sobre el concepto científico de Indetectable = Intransmisible.</p>
+          </div>
+          <div class="myth-back pt-3 border-t border-slate-700/80 text-emerald-400 text-sm space-y-2">
+            <p class="font-bold"><i class="fa-solid fa-circle-check mr-1"></i> REALIDAD (I = I):</p>
+            <p class="text-slate-300 text-xs leading-relaxed">Una persona con VIH en tratamiento efectivo que logra mantener su carga viral <strong>Indetectable</strong> por más de 6 meses NO transmite el virus por vía sexual (<strong>Intransmisible</strong>).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agendar" class="py-20 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden text-center p-8 sm:p-12 space-y-6">
+        <div class="w-16 h-16 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-3xl mx-auto">
+          <i class="fa-solid fa-comments"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">Agendamiento y Gestión Interactiva de Citas</h2>
+        <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
+          Utiliza nuestro asistente inteligente <strong>GenoBot</strong> para realizar una nueva cita, cancelar o reagendar de manera rápida, confidencial y paso a paso.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <button onclick="startAppointmentFlow('general')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2">
+            <i class="fa-solid fa-calendar-plus"></i> Agendar Cita
+          </button>
+          <button onclick="startCancelFlow()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center gap-2">
+            <i class="fa-solid fa-calendar-xmark"></i> Cancelar / Reagendar Cita
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- About Info -->
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Nuestra Historia y Misión</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">Fundación Genoveva A.C.</h2>
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            Nacida en honor a <strong>Genoveva Ramos Urrutia</strong>, nuestra organización potosina trabaja por la salud sexual integral, el acceso libre y sin barreras a pruebas de detección oportuna y la erradicación social del estigma que rodea al VIH en San Luis Potosí.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 pt-4">
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <i class="fa-solid fa-bullseye text-brand-600 text-xl mb-2"></i>
+              <h4 class="font-bold text-navy-900 text-sm">Misión</h4>
+              <p class="text-xs text-slate-500 mt-1">Prevenir, educar y apoyar en salud sexual en SLP.</p>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <i class="fa-solid fa-eye text-indigo-600 text-xl mb-2"></i>
+              <h4 class="font-bold text-navy-900 text-sm">Visión</h4>
+              <p class="text-xs text-slate-500 mt-1">Una sociedad potosina libre de estigma e infección por VIH.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location & Contact -->
+        <div id="contacto" class="lg:col-span-6 bg-slate-900 rounded-3xl p-8 text-white space-y-6 shadow-2xl relative">
+          <h3 class="text-2xl font-bold">Ubicación y Contacto Directo</h3>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-600/30 text-brand-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-location-dot text-lg"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Dirección Sede Principal</p>
+                <p class="text-sm font-semibold text-slate-100">Calle Patria #180, Col. Morales</p>
+                <p class="text-xs text-slate-400">San Luis Potosí, S.L.P., México</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-600/30 text-emerald-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-phone text-lg"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Atención Telefónica / WhatsApp</p>
+                <a href="tel:4443009306" class="text-sm font-semibold text-slate-100 hover:text-brand-300 transition-colors">(444) 300-9306</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-indigo-600/30 text-indigo-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-clock text-lg"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Horario de Atención</p>
+                <p class="text-sm font-semibold text-slate-100">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                <p class="text-xs text-slate-400">Sábados: Previa Cita</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Visual Button -->
+          <div class="w-full h-32 bg-slate-800 rounded-2xl border border-slate-700 relative overflow-hidden flex items-center justify-center text-center p-4">
+            <div class="space-y-2">
+              <i class="fa-solid fa-map-location-dot text-2xl text-brand-500 animate-bounce"></i>
+              <p class="text-xs font-semibold text-slate-300">Col. Morales, San Luis Potosí</p>
+              <a href="https://maps.google.com/?q=Calle+Patria+180+Colonia+Morales+San+Luis+Potosi" target="_blank" class="inline-block text-[11px] bg-brand-600 hover:bg-brand-500 text-white font-bold px-3 py-1 rounded-full transition-colors">
+                Abrir en Google Maps <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-slate-400 text-sm py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">
+          <i class="fa-solid fa-ribbon"></i>
+        </div>
+        <span class="text-slate-200 font-bold text-base">Fundación Genoveva A.C.</span>
+      </div>
+      <p class="text-xs text-center md:text-left">
+        &copy; 2026 Fundación Genoveva A.C. — San Luis Potosí. Todos los derechos reservados.
+      </p>
+      <div class="flex gap-4 text-slate-400 text-base">
+        <a href="#" class="hover:text-brand-400"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="hover:text-brand-400"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="hover:text-brand-400"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot Container -->
+  <div id="chatbotContainer" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
+    <!-- Chat Window -->
+    <div id="chatWindow" class="hidden w-[94vw] sm:w-[410px] h-[580px] bg-white rounded-3xl chat-shadow border border-slate-200/90 flex-col overflow-hidden mb-3 transition-all duration-300">
+
+      <!-- Chat Header -->
+      <div class="bg-gradient-to-r from-navy-900 via-navy-800 to-brand-800 text-white p-4 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white text-lg font-bold border-2 border-white/20">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-navy-900 rounded-full"></span>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm leading-tight text-white flex items-center gap-1.5">
+              GenoBot <span class="text-[10px] bg-brand-500/30 text-brand-200 px-1.5 py-0.5 rounded font-medium">Asistente SLP</span>
+            </h4>
+            <p class="text-[10px] text-brand-200">Salud Sexual · 100% Confidencial</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <button onclick="resetChatFlow()" title="Reiniciar conversación" class="text-slate-300 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors text-xs">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <button onclick="toggleChatbot(false)" title="Minimizar chat" class="text-slate-300 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition-colors">
+            <i class="fa-solid fa-chevron-down text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Action Chips Bar -->
+      <div class="bg-slate-100/90 border-b border-slate-200 p-2 flex items-center gap-1.5 overflow-x-auto custom-scrollbar text-[11px] shrink-0">
+        <button onclick="startAppointmentFlow('general')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-2.5 py-1 rounded-full whitespace-nowrap transition-all shadow-sm flex items-center gap-1">
+          <i class="fa-solid fa-calendar-plus text-[10px]"></i> Agendar
+        </button>
+        <button onclick="startCancelFlow()" class="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-2.5 py-1 rounded-full whitespace-nowrap transition-all shadow-sm flex items-center gap-1">
+          <i class="fa-solid fa-calendar-xmark text-[10px]"></i> Cancelar
+        </button>
+        <button onclick="startRescheduleFlow()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-2.5 py-1 rounded-full whitespace-nowrap transition-all shadow-sm flex items-center gap-1">
+          <i class="fa-solid fa-clock-rotate-left text-[10px]"></i> Reagendar
+        </button>
+        <button onclick="triggerEmergencyFlow()" class="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-2.5 py-1 rounded-full whitespace-nowrap transition-all shadow-sm flex items-center gap-1">
+          <i class="fa-solid fa-triangle-exclamation text-[10px]"></i> Emergencia PEP
+        </button>
+        <button onclick="showPrepInfo()" class="bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 font-medium px-2.5 py-1 rounded-full whitespace-nowrap transition-all flex items-center gap-1">
+          💊 Info PrEP
+        </button>
+        <button onclick="showPepInfo()" class="bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 font-medium px-2.5 py-1 rounded-full whitespace-nowrap transition-all flex items-center gap-1">
+          🚨 Info PEP
+        </button>
+      </div>
+
+      <!-- Chat Messages Container -->
+      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar text-xs bg-slate-50/60">
+        <!-- Messages dynamically rendered -->
+      </div>
+
+      <!-- Typing Indicator -->
+      <div id="typingIndicator" class="hidden px-4 py-2 bg-slate-50 border-t border-slate-100 text-[11px] text-slate-500 items-center gap-2 shrink-0">
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-bounce"></span>
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.2s]"></span>
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.4s]"></span>
+        <span class="ml-1 text-slate-400">GenoBot procesando...</span>
+      </div>
+
+      <!-- Chat Input Area -->
+      <form onsubmit="handleChatSubmit(event)" class="p-3 bg-slate-50 border-t border-slate-200 flex flex-col gap-1.5 shrink-0">
+        <div class="flex items-center gap-2">
+          <!-- Botón explícito para Salir del Chat -->
+          <button type="button" onclick="toggleChatbot(false)" class="bg-white hover:bg-rose-100 hover:text-rose-600 text-slate-400 border border-slate-200 hover:border-rose-200 w-10 h-10 rounded-xl flex items-center justify-center transition-all shrink-0 shadow-sm" title="Salir / Cerrar Chat">
+            <i class="fa-solid fa-arrow-right-from-bracket text-sm"></i>
+          </button>
+          
+          <input id="chatInput" type="text" placeholder="Escribe tu consulta o responde aquí..." class="flex-1 bg-white border border-slate-200 focus:bg-white focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 outline-none transition-all shadow-sm">
+          
+          <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white w-10 h-10 rounded-xl flex items-center justify-center transition-colors shrink-0 shadow-sm">
+            <i class="fa-solid fa-paper-plane text-sm"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Floating Toggle Button -->
+    <button onclick="toggleChatbot()" class="bg-gradient-to-tr from-brand-700 to-brand-500 hover:scale-105 text-white p-4 rounded-full shadow-2xl shadow-brand-600/40 flex items-center gap-3 transition-all group">
+      <div class="relative">
+        <i class="fa-solid fa-comments text-2xl"></i>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 border-2 border-brand-700 rounded-full"></span>
+      </div>
+      <span class="font-bold text-sm hidden sm:inline pr-2">GenoBot · Asistente Citas e Informes</span>
+    </button>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    mobileMenu.querySelectorAll('a, button').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Flip cards for myths
+    function flipCard(cardElement) {
+      cardElement.classList.toggle('flipped');
+    }
+
+    // --- State Machine for Chatbot ---
+    let currentConversationState = 'IDLE';
+    let bookingData = {
+      type: '', date: '', timeSlot: '', name: '', phone: '', code: ''
+    };
+
+    // Store for simulated active bookings
+    let activeBookings = [
+      { code: 'FG-8821', type: 'PrEP', date: '2026-10-15', timeSlot: 'Mañana (10:00 AM - 1:00 PM)', name: 'Alex M.', phone: '4441234567' }
+    ];
+
+    // --- STREAMING_CHUNK:Defining the Knowledge Base for free-text navigation... ---
+    const KNOWLEDGE_BASE = [
+      {
+        keywords: ['emergencia', '72 horas', '72h', 'expuesto', 'exposicion', 'riesgo reciente', 'me expuse', 'relacion de riesgo', 'rompio condon', 'sin proteccion'],
+        response: '🚨 **ATENCIÓN DE EMERGENCIA (PEP - Relación de Riesgo):**\n\nSi tuviste una posible exposición al VIH dentro de las últimas **72 horas**, debes iniciar la **Profilaxis Post-Exposición (PEP)** inmediatamente. Mientras más pronto la inicies, mayor es su eficacia.\n\n¿Deseas solicitar una cita prioritaria de emergencia por PEP ahora mismo?',
+        buttons: [
+          { text: '🚨 Solicitar Cita de Emergencia PEP', action: "startAppointmentFlow('PEP')" },
+          { text: '📞 Llamar (444) 300-9306', action: "window.open('tel:4443009306')" }
+        ]
+      },
+      {
+        keywords: ['informes de pep', 'informes pep', 'que es pep', 'pep'],
+        response: '💊 **Informes sobre PEP (Profilaxis Post-Exposición):**\n\n• **¿Qué es?** Un tratamiento con antirretrovirales de emergencia que previene la infección por VIH tras una exposición de riesgo.\n• **Tiempo límite:** Debe iniciarse **antes de 72 horas** posteriores al evento (idealmente en las primeras 24 horas).\n• **Duración:** Consiste en tomar el medicamento durante 28 días.\n• **Costo:** Totalmente **Gratuito** en la fundación y CAPASITS.\n\n¿Quieres agendar tu cita prioritaria para PEP?',
+        buttons: [
+          { text: '📅 Agendar Cita para PEP', action: "startAppointmentFlow('PEP')" },
+          { text: '🔙 Ver menú de citas', action: "showAppointmentsMenu()" }
+        ]
+      },
+      {
+        keywords: ['informes de prep', 'informes prep', 'que es prep', 'prep'],
+        response: '💊 **Informes sobre PrEP (Profilaxis Pre-Exposición):**\n\n• **¿Qué es?** Tratamiento preventivo diario para personas VIH negativas que desean protegerse activamente del VIH.\n• **Efectividad:** Reduce más del 99% el riesgo de contraer VIH por vía sexual cuando se toma adecuadamente.\n• **Servicio:** Ofrecemos asesoría, acompañamiento y canalización para el protocolo de inicio.\n\n¿Te gustaría agendar una cita de valoración e informes de PrEP?',
+        buttons: [
+          { text: '📅 Agendar Cita PrEP', action: "startAppointmentFlow('PrEP')" },
+          { text: '🔙 Ver menú de citas', action: "showAppointmentsMenu()" }
+        ]
+      },
+      {
+        keywords: ['realizar una cita', 'agendar cita', 'agendar', 'cita nueva', 'hacer cita', 'pedir cita'],
+        response: '📅 Con gusto te ayudo a agendar tu cita confidencial. ¿Para qué servicio deseas agendar?',
+        buttons: [
+          { text: '🧪 PrEP (Profilaxis Pre-Exposición)', action: "startAppointmentFlow('PrEP')" },
+          { text: '🚨 PEP (Emergencia < 72 hrs)', action: "startAppointmentFlow('PEP')" },
+          { text: '💉 Prueba Rápidas de Rutina', action: "startAppointmentFlow('Prueba de Rutina')" }
+        ]
+      },
+      {
+        keywords: ['cancelar una cita', 'cancelar cita', 'cancelar', 'anular cita'],
+        response: '❌ Entendido. Vamos a procesar la cancelación de tu cita. Por favor, ten a la mano tu código de cita o el nombre/seudónimo registrado.',
+        buttons: [
+          { text: '❌ Iniciar Cancelación', action: "startCancelFlow()" }
+        ]
+      },
+      {
+        keywords: ['reagendar cita', 'reagendar', 'cambiar fecha', 'mudar cita', 'posponer cita'],
+        response: '🔄 Entendido. Podemos cambiar la fecha u horario de tu cita existente de forma muy sencilla.',
+        buttons: [
+          { text: '🔄 Iniciar Reagendamiento', action: "startRescheduleFlow()" }
+        ]
+      },
+      {
+        keywords: ['ubicacion', 'direccion', 'donde estan', 'donde queda', 'llegar', 'mapa'],
+        response: '📍 Estamos ubicados en:\n**Calle Patria #180, Col. Morales, San Luis Potosí, S.L.P.**\n\nHorario: Lunes a Viernes de 9:00 AM a 6:00 PM.\nSábados con cita previa.'
+      },
+      {
+        keywords: ['hola', 'buenas', 'buenos dias', 'buenas tardes', 'inicio'],
+        response: '¡Hola! 🌸 Soy **GenoBot**, el asistente virtual de la Fundación Genoveva A.C.\n\nPuedes navegar usando las opciones interactivas o escribir tus dudas. ¿En qué te puedo ayudar hoy?',
+        buttons: [
+          { text: '📅 Menú de Citas (Agendar / Cancelar / Reagendar)', action: "showAppointmentsMenu()" },
+          { text: '💊 Informes PrEP', action: "sendQuickMessage('Informes de PrEP')" },
+          { text: '🚨 Informes PEP / Emergencia', action: "sendQuickMessage('Informes de PEP')" }
+        ]
+      }
+    ];
+
+    const FALLBACK_RESPONSE = 'No comprendí completamente tu mensaje. ¿Deseas elegir una de las opciones principales de nuestro menú?';
+
+    // --- STREAMING_CHUNK:Writing base Chatbot core functions... ---
+    let isChatOpen = false;
+
+    function toggleChatbot(forceState) {
+      const chatWindow = document.getElementById('chatWindow');
+      isChatOpen = forceState !== undefined ? forceState : !isChatOpen;
+
+      if (isChatOpen) {
+        chatWindow.classList.remove('hidden');
+        chatWindow.classList.add('flex');
+        if (document.getElementById('chatMessages').children.length === 0) {
+          showWelcomeMessage();
+        }
+        document.getElementById('chatInput').focus();
+      } else {
+        chatWindow.classList.add('hidden');
+        chatWindow.classList.remove('flex');
+      }
+    }
+
+    function resetChatFlow() {
+      currentConversationState = 'IDLE';
+      bookingData = { type: '', date: '', timeSlot: '', name: '', phone: '', code: '' };
+      document.getElementById('chatMessages').innerHTML = '';
+      showWelcomeMessage();
+    }
+
+    function showWelcomeMessage() {
+      appendBotMessage(
+        '¡Hola! 🌸 Bienvenido/a a **Fundación Genoveva A.C.**\n\nSoy **GenoBot**, tu asistente confidencial. ¿Qué gestión deseas realizar hoy?',
+        [
+          { text: '📅 Agendar Cita', action: "startAppointmentFlow('general')" },
+          { text: '❌ Cancelar / 🔄 Reagendar', action: "showAppointmentsMenu()" },
+          { text: '💊 Información detallada sobre PrEP', action: "showPrepInfo()" },
+          { text: '🚨 Información sobre PEP (Emergencia)', action: "showPepInfo()" }
+        ]
+      );
+    }
+
+    // --- STREAMING_CHUNK:Implementing PrEP and PEP specific information sections... ---
+    function showPrepInfo() {
+      currentConversationState = 'INFO_PREP';
+      appendBotMessage(
+        '💊 **PrEP (Profilaxis Pre-Exposición):**\n\n' +
+        'Es un tratamiento de **prevención** para personas VIH negativas. Al tomar una pastilla diaria (o a demanda), reduces el riesgo de contraer VIH por vía sexual en más de un 99%.\n\n' +
+        '• **¿Para quién es recomendado?** Personas con múltiples parejas sexuales, parejas serodiscordantes, o quienes tienen relaciones sin condón regularmente.\n' +
+        '• **Proceso:** Requiere una evaluación médica previa y pruebas de laboratorio (VIH e ITS) que realizamos aquí de manera gratuita.\n\n' +
+        '¿Deseas iniciar tu protocolo y agendar una cita de evaluación para PrEP?',
+        [
+          { text: '📅 Sí, Agendar Cita para PrEP', action: "startAppointmentFlow('PrEP')" },
+          { text: '🏠 Volver al Menú Principal', action: "resetChatFlow()" }
+        ]
+      );
+    }
+
+    function showPepInfo() {
+      currentConversationState = 'INFO_PEP';
+      appendBotMessage(
+        '🚨 **PEP (Profilaxis Post-Exposición):**\n\n' +
+        'Es un tratamiento médico de **emergencia** para prevenir el VIH después de una situación de riesgo (como ruptura del condón o violencia sexual).\n\n' +
+        '⚠️ **TIEMPO CRÍTICO:** Debe iniciarse estrictamente **antes de 72 horas** posteriores a la exposición. Mientras más rápido, más efectivo (ideal antes de las primeras 24 hrs).\n' +
+        '• **Tratamiento:** Se toman medicamentos antirretrovirales diariamente durante 28 días.\n\n' +
+        'Si tuviste una relación de riesgo reciente, no esperes. Agenda inmediatamente.',
+        [
+          { text: '🚨 Solicitar Cita de Emergencia PEP', action: "startAppointmentFlow('PEP')" },
+          { text: '🏠 Volver al Menú Principal', action: "resetChatFlow()" }
+        ]
+      );
+    }
+
+    function showAppointmentsMenu() {
+      currentConversationState = 'IDLE';
+      appendBotMessage(
+        '📋 **Gestión de Citas - Fundación Genoveva A.C.**\n\nSelecciona la acción que deseas llevar a cabo:',
+        [
+          { text: '📅 Agendar una Nueva Cita', action: "startAppointmentFlow('general')" },
+          { text: '❌ Cancelar una Cita', action: "startCancelFlow()" },
+          { text: '🔄 Reagendar una Cita', action: "startRescheduleFlow()" }
+        ]
+      );
+    }
+
+    // --- STREAMING_CHUNK:Implementing the Appointment Booking flow... ---
+    function startAppointmentFlow(type) {
+      currentConversationState = 'AGENDAR_STEP1_TIPO';
+      bookingData = { type: '', date: '', timeSlot: '', name: '', phone: '', code: '' };
+
+      if (type && type !== 'general') {
+        bookingData.type = type;
+        askAppointmentStep2();
+      } else {
+        appendBotMessage(
+          '📌 **Paso 1: Tipo de Cita / Prueba**\n\nPor favor, selecciona qué tipo de servicio o atención requieres:',
+          [
+            { text: '💊 Cita para PEP (Emergencia Exposición)', action: "selectType('PEP')" },
+            { text: '🛡️ Cita para PrEP (Prevención Diaria)', action: "selectType('PrEP')" },
+            { text: '🧪 Prueba Rápida de Rutina (VIH/ITS)', action: "selectType('Prueba de Rutina')" }
+          ]
+        );
+      }
+    }
+
+    function selectType(selectedType) {
+      bookingData.type = selectedType;
+      askAppointmentStep2();
+    }
+
+    function askAppointmentStep2() {
+      currentConversationState = 'AGENDAR_STEP2_FECHA';
+      
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const dayAfter = new Date(today);
+      dayAfter.setDate(dayAfter.getDate() + 2);
+
+      const formatDate = (d) => d.toISOString().split('T')[0];
+
+      appendBotMessage(
+        `✅ Seleccionaste: **${bookingData.type}**.\n\n📌 **Paso 2: Elección de Fecha y Horario**\n\nSelecciona un día sugerido o escribe la fecha deseada (AAAA-MM-DD):`,
+        [
+          { text: `📅 Mañana (${formatDate(tomorrow)})`, action: `selectDate('${formatDate(tomorrow)}')` },
+          { text: `📅 Pasado Mañana (${formatDate(dayAfter)})`, action: `selectDate('${formatDate(dayAfter)}')` }
+        ]
+      );
+    }
+
+    function selectDate(dateStr) {
+      bookingData.date = dateStr;
+      askAppointmentStep2TimeSlot();
+    }
+
+    function askAppointmentStep2TimeSlot() {
+      appendBotMessage(
+        `📅 Fecha elegida: **${bookingData.date}**.\n\nPor favor, selecciona el horario preferido para asistir:`,
+        [
+          { text: '🌅 Mañana (10:00 AM - 1:00 PM)', action: "selectTimeSlot('Mañana (10:00 AM - 1:00 PM)')" },
+          { text: '🌆 Tarde (3:00 PM - 6:00 PM)', action: "selectTimeSlot('Tarde (3:00 PM - 6:00 PM)')" }
+        ]
+      );
+    }
+
+    function selectTimeSlot(slot) {
+      bookingData.timeSlot = slot;
+      currentConversationState = 'AGENDAR_STEP3_DATOS';
+      
+      appendBotMessage(
+        `🕒 Horario reservado: **${bookingData.timeSlot}**.\n\n📌 **Paso 3: Datos Personales (Confidencial)**\n\nEscribe tu **Nombre o Seudónimo** (puedes usar un alias para mantener tu anonimato) en el cuadro de chat de abajo:`
+      );
+    }
+
+    function finishAppointmentFlow() {
+      const generatedCode = 'FG-' + Math.floor(1000 + Math.random() * 9000);
+      bookingData.code = generatedCode;
+      activeBookings.push({ ...bookingData });
+      currentConversationState = 'IDLE';
+
+      appendBotMessage(
+        `🎉 **¡Confirmación de la Cita!**\n\n` +
+        `• **Código de Cita:** \`${bookingData.code}\`\n` +
+        `• **Tipo de Prueba:** ${bookingData.type}\n` +
+        `• **Fecha:** ${bookingData.date}\n` +
+        `• **Horario:** ${bookingData.timeSlot}\n` +
+        `• **Nombre/Alias:** ${bookingData.name}\n` +
+        `• **Teléfono:** ${bookingData.phone || 'No proporcionado'}\n\n` +
+        `📍 **Ubicación:** Calle Patria #180, Col. Morales, San Luis Potosí.\n` +
+        `🔒 Recuerda que tu cita es 100% gratuita y confidencial. Guarda tu código para cualquier cambio.`,
+        [
+          { text: '📍 Ver mapa en Google Maps', action: "window.open('https://maps.google.com/?q=Calle+Patria+180+Colonia+Morales+San+Luis+Potosi')" },
+          { text: '🏠 Volver al Menú Principal', action: "resetChatFlow()" }
+        ]
+      );
+    }
+
+    // --- STREAMING_CHUNK:Implementing the Appointment Cancellation flow... ---
+    function startCancelFlow() {
+      currentConversationState = 'CANCELAR_STEP1_DATOS';
+      appendBotMessage(
+        '❌ **Cancelación de Cita - Paso 1: Datos de la Cita**\n\nPor favor, escribe tu **Código de Cita** (ej. FG-8821) o el **Nombre/Teléfono** registrado:'
+      );
+    }
+
+    function processCancelSearch(input) {
+      const match = activeBookings.find(b => 
+        b.code.toLowerCase() === input.toLowerCase() || 
+        b.name.toLowerCase().includes(input.toLowerCase()) || 
+        (b.phone && b.phone.includes(input))
+      );
+
+      if (match) {
+        bookingData = { ...match };
+        currentConversationState = 'CANCELAR_STEP2_CONFIRM';
+        appendBotMessage(
+          `🔍 **Cita Localizada:**\n\n` +
+          `• **Código:** \`${match.code}\`\n` +
+          `• **Servicio:** ${match.type}\n` +
+          `• **Fecha:** ${match.date} (${match.timeSlot})\n` +
+          `• **Registrada a nombre de:** ${match.name}\n\n` +
+          `¿Estás seguro/a de que deseas cancelar definitivamente esta cita?`,
+          [
+            { text: '⚠️ Sí, Confirmar Cancelación', action: "confirmCancellation()" },
+            { text: '🔙 No, Mantener Cita', action: "resetChatFlow()" }
+          ]
+        );
+      } else {
+        bookingData = { code: input.toUpperCase(), name: 'Usuario', type: 'Prueba / Consulta', date: 'Programada' };
+        currentConversationState = 'CANCELAR_STEP2_CONFIRM';
+        appendBotMessage(
+          `🔍 Se procesará la solicitud para la cita con referencia: **${input}**.\n\n¿Deseas confirmar la cancelación?`,
+          [
+            { text: '⚠️ Sí, Confirmar Cancelación', action: "confirmCancellation()" },
+            { text: '🔙 No, Cancelar Proceso', action: "resetChatFlow()" }
+          ]
+        );
+      }
+    }
+
+    function confirmCancellation() {
+      activeBookings = activeBookings.filter(b => b.code !== bookingData.code);
+      currentConversationState = 'IDLE';
+      appendBotMessage(
+        `✅ **Confirmación de Cancelación de Cita**\n\nLa cita con código \`${bookingData.code}\` ha sido cancelada exitosamente en nuestro sistema.\n\nSi necesitas agendar una nueva cita en el futuro, estaré aquí para ayudarte.`,
+        [
+          { text: '📅 Agendar Nueva Cita', action: "startAppointmentFlow('general')" },
+          { text: '🏠 Menú Principal', action: "resetChatFlow()" }
+        ]
+      );
+    }
+
+    // --- STREAMING_CHUNK:Implementing the Appointment Rescheduling flow... ---
+    function startRescheduleFlow() {
+      currentConversationState = 'REAGENDAR_STEP1_DATOS';
+      appendBotMessage(
+        '🔄 **Reagendar Cita - Paso 1: Localizar Cita Previa**\n\nPor favor, escribe tu **Código de Cita** (ej. FG-8821) o el **Nombre** registrado:'
+      );
+    }
+
+    function processRescheduleSearch(input) {
+      bookingData = { code: input.toUpperCase(), type: 'Atención General', name: input };
+      currentConversationState = 'REAGENDAR_STEP2_FECHA';
+      const today = new Date();
+      const nextWeek = new Date(today);
+      nextWeek.setDate(nextWeek.getDate() + 3);
+
+      appendBotMessage(
+        `🔍 Cita identificada para: **${input}**.\n\n📌 **Paso 2: Selección de Nueva Fecha y Horario**\n\nSelecciona la nueva fecha deseada:`,
+        [
+          { text: `📅 Próximo Fecha (${nextWeek.toISOString().split('T')[0]})`, action: `selectRescheduleDate('${nextWeek.toISOString().split('T')[0]}')` }
+        ]
+      );
+    }
+
+    function selectRescheduleDate(newDate) {
+      bookingData.date = newDate;
+      appendBotMessage(
+        `📅 Nueva fecha: **${newDate}**.\n\nSelecciona el nuevo horario:`,
+        [
+          { text: '🌅 Mañana (10:00 AM - 1:00 PM)', action: "finishReschedule('Mañana (10:00 AM - 1:00 PM)')" },
+          { text: '🌆 Tarde (3:00 PM - 6:00 PM)', action: "finishReschedule('Tarde (3:00 PM - 6:00 PM)')" }
+        ]
+      );
+    }
+
+    function finishReschedule(newSlot) {
+      bookingData.timeSlot = newSlot;
+      currentConversationState = 'IDLE';
+      appendBotMessage(
+        `🎉 **¡Cita Reagendada con Éxito!**\n\n` +
+        `• **Código:** \`${bookingData.code}\`\n` +
+        `• **Nueva Fecha:** ${bookingData.date}\n` +
+        `• **Nuevo Horario:** ${bookingData.timeSlot}\n\n` +
+        `📍 **Lugar:** Calle Patria #180, Col. Morales, San Luis Potosí. ¡Te esperamos!`,
+        [
+          { text: '🏠 Menú Principal', action: "resetChatFlow()" }
+        ]
+      );
+    }
+
+    // --- Emergency Shortcut ---
+    function triggerEmergencyFlow() {
+      toggleChatbot(true);
+      appendUserMessage('🚨 Tengo una emergencia por relación de riesgo (PEP)');
+      startAppointmentFlow('PEP');
+    }
+
+    // --- STREAMING_CHUNK:Processing inputs and formatting UI updates... ---
+    function sendQuickMessage(text) {
+      toggleChatbot(true);
+      document.getElementById('chatInput').value = text;
+      handleChatSubmit(new Event('submit'));
+    }
+
+    function handleChatSubmit(event) {
+      event.preventDefault();
+      const inputEl = document.getElementById('chatInput');
+      const text = inputEl.value.trim();
+      if (!text) return;
+
+      appendUserMessage(text);
+      inputEl.value = '';
+
+      if (currentConversationState === 'AGENDAR_STEP3_DATOS') {
+        if (!bookingData.name) {
+          bookingData.name = text;
+          appendBotMessage(
+            `Gracias **${bookingData.name}**. Opcionalmente, escribe tu **Teléfono o WhatsApp** para notificaciones (o escribe "omitir"):`
+          );
+        } else {
+          bookingData.phone = text.toLowerCase() === 'omitir' ? '' : text;
+          finishAppointmentFlow();
+        }
+      } else if (currentConversationState === 'AGENDAR_STEP2_FECHA') {
+        selectDate(text);
+      } else if (currentConversationState === 'CANCELAR_STEP1_DATOS') {
+        processCancelSearch(text);
+      } else if (currentConversationState === 'REAGENDAR_STEP1_DATOS') {
+        processRescheduleSearch(text);
+      } else if (currentConversationState === 'REAGENDAR_STEP2_FECHA') {
+        selectRescheduleDate(text);
+      } else {
+        processKeywordSearch(text);
+      }
+    }
+
+    function processKeywordSearch(query) {
+      showTyping(true);
+      setTimeout(() => {
+        showTyping(false);
+        const norm = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        let matched = null;
+
+        for (const item of KNOWLEDGE_BASE) {
+          if (item.keywords.some(kw => norm.includes(kw))) {
+            matched = item;
+            break;
+          }
+        }
+
+        if (matched) {
+          appendBotMessage(matched.response, matched.buttons);
+        } else {
+          appendBotMessage(FALLBACK_RESPONSE, [
+            { text: '📅 Agendar Cita', action: "startAppointmentFlow('general')" },
+            { text: '❌ Cancelar / Reagendar', action: "showAppointmentsMenu()" },
+            { text: '🚨 Informes PEP', action: "sendQuickMessage('Informes de PEP')" },
+            { text: '💊 Informes PrEP', action: "sendQuickMessage('Informes de PrEP')" }
+          ]);
+        }
+      }, 400);
+    }
+
+    function appendUserMessage(text) {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = 'flex justify-end';
+      div.innerHTML = `
+        <div class="bg-brand-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] text-xs shadow-sm">
+          <p>${escapeHtml(text)}</p>
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function appendBotMessage(text, buttons = []) {
+      const container = document.getElementById('chatMessages');
+      const div = document.createElement('div');
+      div.className = 'flex gap-2 items-start';
+
+      let buttonsHtml = '';
+      if (buttons && buttons.length > 0) {
+        buttonsHtml = `
+          <div class="flex flex-col gap-1.5 pt-2">
+            ${buttons.map(b => `
+              <button onclick="${b.action}" class="w-full text-left bg-slate-100 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 text-slate-800 text-xs py-2 px-3 rounded-xl transition-all font-medium flex items-center justify-between group">
+                <span>${b.text}</span>
+                <i class="fa-solid fa-chevron-right text-[10px] text-slate-400 group-hover:text-brand-600 transition-colors"></i>
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      div.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">
+          G
+        </div>
+        <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border border-slate-200/90 shadow-sm max-w-[88%] text-slate-700 space-y-2">
+          ${formatBotText(text)}
+          ${buttonsHtml}
+        </div>
+      `;
+
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showTyping(show) {
+      const indicator = document.getElementById('typingIndicator');
+      if (show) {
+        indicator.classList.remove('hidden');
+        indicator.classList.add('flex');
+      } else {
+        indicator.classList.add('hidden');
+        indicator.classList.remove('flex');
+      }
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function formatBotText(text) {
+      const escaped = escapeHtml(text);
+      return escaped
+        .split(/\n\n+/)
+        .map(p => `<p class="leading-relaxed">${p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, '<code class="bg-slate-100 text-brand-700 font-mono px-1.5 py-0.5 rounded border text-[11px]">$1</code>').replace(/\n/g, '<br>')}</p>`)
+        .join('');
+    }
+
+    window.onload = function() {
+      // Setup complete
+    };
+  </script>
+</body>
+</html>

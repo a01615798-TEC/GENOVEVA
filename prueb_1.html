@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundación Genoveva A.C. | Salud Sexual Integral y Prevención del VIH en SLP</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fdf2f8',
+              100: '#fce7f3',
+              500: '#ec4899',
+              600: '#db2777',
+              700: '#be185d',
+              800: '#9d174d',
+              900: '#831843',
+            },
+            navy: {
+              800: '#1e1b4b',
+              900: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Estilos personalizados para animaciones del Chatbot y componentes */
+    .chat-shadow {
+      box-shadow: 0 12px 32px rgba(157, 23, 77, 0.15), 0 2px 8px rgba(15, 23, 42, 0.08);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Banner de Confidencialidad -->
+  <div class="bg-navy-900 text-slate-200 text-xs py-2 px-4 text-center border-b border-slate-800">
+    <div class="max-w-7xl mx-mx-auto flex items-center justify-center gap-2 flex-wrap">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Atención 100% Confidencial, Gratuita y Libre de Discriminación en San Luis Potosí.</span>
+      <a href="tel:4443009306" class="underline hover:text-brand-300 font-semibold ml-1">Línea Directa: (444) 300-9306</a>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-ribbon"></i>
+        </div>
+        <div>
+          <span class="text-xl font-extrabold text-navy-900 tracking-tight block leading-none">Fundación Genoveva</span>
+          <span class="text-xs font-semibold text-brand-600 tracking-wider uppercase">A.C. · Salud & Prevención</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+        <a href="#inicio" class="hover:text-brand-600 transition-colors">Inicio</a>
+        <a href="#servicios" class="hover:text-brand-600 transition-colors">Servicios</a>
+        <a href="#mitos" class="hover:text-brand-600 transition-colors">Mitos y Realidades</a>
+        <a href="#nosotros" class="hover:text-brand-600 transition-colors">Nosotros</a>
+        <a href="#contacto" class="hover:text-brand-600 transition-colors">Ubicación</a>
+      </nav>
+
+      <!-- CTA Nav -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#agendar" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/30 transition-all flex items-center gap-2">
+          <i class="fa-regular fa-calendar-check"></i>
+          Agendar Prueba
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-navy-900 hover:bg-slate-100">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Panel -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+      <a href="#inicio" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Inicio</a>
+      <a href="#servicios" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Servicios</a>
+      <a href="#mitos" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Mitos y Realidades</a>
+      <a href="#nosotros" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Nosotros</a>
+      <a href="#contacto" class="block py-2 text-slate-700 font-medium hover:text-brand-600">Ubicación</a>
+      <a href="#agendar" class="block w-full text-center bg-brand-600 text-white font-semibold py-3 rounded-xl mt-4">Agendar Cita Confidencial</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-brand-50/50 via-white to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-800 text-xs font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-heart-pulse"></i> San Luis Potosí, México
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-900 tracking-tight leading-tight">
+            Tu salud sexual en un espacio <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-800">seguro, humano y confidencial.</span>
+          </h1>
+          
+          <p class="text-lg text-slate-600 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Acompañamiento empático, pruebas rápidas de VIH e ITS gratuitas, orientación en PrEP/PEP y combate activo al estigma en honor a la memoria de Genoveva Ramos Urrutia.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#agendar" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold text-base px-8 py-4 rounded-2xl shadow-lg shadow-brand-600/30 hover:shadow-brand-600/40 transition-all flex items-center justify-center gap-3">
+              <i class="fa-solid fa-calendar-day"></i>
+              Agendar Prueba Anónima
+            </a>
+            <button onclick="toggleChatbot(true)" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-navy-900 font-bold text-base px-7 py-4 rounded-2xl border-2 border-slate-200 hover:border-brand-300 transition-all flex items-center justify-center gap-3">
+              <i class="fa-solid fa-robot text-brand-600"></i>
+              Consultar Asistente IA
+            </button>
+          </div>
+
+          <!-- Feature badges -->
+          <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200/80 max-w-xl mx-auto lg:mx-0">
+            <div class="text-center lg:text-left">
+              <span class="block font-extrabold text-xl sm:text-2xl text-navy-900">100%</span>
+              <span class="text-xs text-slate-500 font-medium">Confidencial</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block font-extrabold text-xl sm:text-2xl text-navy-900">Gratuito</span>
+              <span class="text-xs text-slate-500 font-medium">Pruebas & Guía</span>
+            </div>
+            <div class="text-center lg:text-left">
+              <span class="block font-extrabold text-xl sm:text-2xl text-navy-900">Sin Juicios</span>
+              <span class="text-xs text-slate-500 font-medium">Espacio Seguro</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column / Hero Visual -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <!-- Decorative blur background -->
+            <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand-500 to-indigo-500 opacity-20 blur-xl"></div>
+            
+            <div class="relative bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-brand-100 flex items-center justify-center text-brand-700 font-bold text-xl">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-navy-900 text-lg">Atención Integral hoy</h3>
+                  <p class="text-xs text-slate-500">Calle Patria #180, Col. Morales</p>
+                </div>
+              </div>
+
+              <!-- Fast Info Box -->
+              <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-3">
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-check-circle text-emerald-500 mt-1"></i>
+                  <p class="text-xs text-slate-600 font-medium"><strong class="text-slate-800">Resultados en 15-20 min:</strong> Pruebas duo o individuales de VIH con orientación previa y posterior.</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-check-circle text-emerald-500 mt-1"></i>
+                  <p class="text-xs text-slate-600 font-medium"><strong class="text-slate-800">Acompañamiento vinculante:</strong> Si tu resultado es reactivo, te tomamos de la mano para iniciar tratamiento en CAPASITS.</p>
+                </div>
+              </div>
+
+              <!-- Quick Action Card -->
+              <div class="p-4 rounded-2xl bg-gradient-to-r from-navy-900 to-navy-800 text-white space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-brand-300">¿Dudas o Emergencia?</span>
+                  <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-medium">Línea activa</span>
+                </div>
+                <p class="text-sm font-medium text-slate-200">Aclara tus inquietudes sobre exposición al VIH o solicitud de PEP antes de 72 horas.</p>
+                <button onclick="toggleChatbot(true)" class="w-full mt-2 text-center text-xs bg-brand-600 hover:bg-brand-500 text-white font-bold py-2 rounded-xl transition-colors">
+                  Preguntar al Asistente IA <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="servicios" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest">Lo que hacemos por ti</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">Servicios integrales para cuidar tu salud sexual</p>
+        <p class="text-slate-600 text-base">Todos nuestros servicios son completamente gratuitos, confidenciales y prestados en un marco estricto de respeto a tus derechos humanos.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Service 1 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-vial-virus"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Pruebas Rápidas</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Detección confidencial y rápida de VIH y otras ITS mediante punción capilar. Resultados confiables e inmediatos en minutos.
+            </p>
+          </div>
+          <a href="#agendar" class="inline-flex items-center text-xs font-bold text-brand-600 hover:text-brand-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Solicitar cita <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-pills"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Guía PrEP y PEP</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Información, orientación y canalización para Profilaxis Pre-Exposición (PrEP) y Profilaxis Post-Exposición de Emergencia (PEP).
+            </p>
+          </div>
+          <button onclick="askBotAbout('PrEP y PEP')" class="inline-flex items-center text-xs font-bold text-indigo-600 hover:text-indigo-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Consultar al Chatbot <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Acompañamiento</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Contención emocional y apoyo entre pares antes, durante y después de la prueba. Si tu resultado es positivo, no estás solo/a.
+            </p>
+          </div>
+          <a href="#contacto" class="inline-flex items-center text-xs font-bold text-emerald-600 hover:text-emerald-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Saber más <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="bg-slate-50 hover:bg-brand-50/40 rounded-3xl p-6 border border-slate-100 hover:border-brand-200 transition-all group flex flex-col justify-between">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hospital-user"></i>
+            </div>
+            <h3 class="text-xl font-bold text-navy-900 mb-3">Canalización Médica</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mb-4">
+              Vinculación directa y rápida con CAPASITS y servicios del sector salud de San Luis Potosí para garantizar tratamiento gratuito.
+            </p>
+          </div>
+          <a href="#contacto" class="inline-flex items-center text-xs font-bold text-amber-600 hover:text-amber-800 gap-1 group-hover:translate-x-1 transition-transform">
+            Ver directorio <i class="fa-solid fa-chevron-right text-[10px]"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Myths vs Realities Section -->
+  <section id="mitos" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <!-- Decorative backdrop grid -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ec4899_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <span class="px-3 py-1 bg-brand-500/20 text-brand-300 border border-brand-500/30 rounded-full text-xs font-bold uppercase tracking-widest inline-block">Educación sin Estigma</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Mitos vs. Realidades sobre el VIH</h2>
+        <p class="text-slate-400 text-base">Haz clic en cada tarjeta para conocer la realidad médica demostrada e informarte correctamente.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Myth Card 1 -->
+        <div onclick="flipCard(this)" class="cursor-pointer bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-500/50 rounded-3xl p-6 transition-all duration-300 shadow-xl group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Mito Común</span>
+            <span class="text-xs text-slate-400 group-hover:text-brand-300 font-semibold"><i class="fa-solid fa-arrows-rotate mr-1"></i> Tocar para ver Realidad</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 mb-3">"El VIH se transmite por abrazos, besos o compartir vasos"</h3>
+          <p class="text-sm text-slate-400 line-clamp-3 group-[.flipped]:hidden">El miedo al contagio por contacto cotidiano es uno de los mayores mitos que generan discriminación.</p>
+          <div class="hidden group-[.flipped]:block pt-3 border-t border-slate-700/80 text-emerald-400 text-sm space-y-2">
+            <p class="font-bold"><i class="fa-solid fa-circle-check mr-1"></i> REALIDAD:</p>
+            <p class="text-slate-300 text-xs leading-relaxed">El VIH SOLO se transmite a través de fluidos específicos (sangre, semen, fluidos vaginales/rectales y leche materna). NO se transmite por saliva, sudor, abrazos ni picaduras de mosquitos.</p>
+          </div>
+        </div>
+
+        <!-- Myth Card 2 -->
+        <div onclick="flipCard(this)" class="cursor-pointer bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-500/50 rounded-3xl p-6 transition-all duration-300 shadow-xl group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Mito Común</span>
+            <span class="text-xs text-slate-400 group-hover:text-brand-300 font-semibold"><i class="fa-solid fa-arrows-rotate mr-1"></i> Tocar para ver Realidad</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 mb-3">"Un diagnóstico de VIH es una sentencia de muerte"</h3>
+          <p class="text-sm text-slate-400 line-clamp-3 group-[.flipped]:hidden">Muchas personas asocian el VIH con el desarrollo inevitable de SIDA o muerte inmediata.</p>
+          <div class="hidden group-[.flipped]:block pt-3 border-t border-slate-700/80 text-emerald-400 text-sm space-y-2">
+            <p class="font-bold"><i class="fa-solid fa-circle-check mr-1"></i> REALIDAD:</p>
+            <p class="text-slate-300 text-xs leading-relaxed">Con el Tratamiento Antirretroviral (TAR) moderno, una persona con VIH tiene la misma expectativa y calidad de vida que cualquier otra persona.</p>
+          </div>
+        </div>
+
+        <!-- Myth Card 3 -->
+        <div onclick="flipCard(this)" class="cursor-pointer bg-slate-800/80 hover:bg-slate-800 border border-slate-700 hover:border-brand-500/50 rounded-3xl p-6 transition-all duration-300 shadow-xl group">
+          <div class="flex items-center justify-between mb-4">
+            <span class="bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Mito Común</span>
+            <span class="text-xs text-slate-400 group-hover:text-brand-300 font-semibold"><i class="fa-solid fa-arrows-rotate mr-1"></i> Tocar para ver Realidad</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-100 mb-3">"Si tengo VIH puedo transmitirlo aunque tome medicamentos"</h3>
+          <p class="text-sm text-slate-400 line-clamp-3 group-[.flipped]:hidden">Existe desconocimiento sobre el concepto científico de Indetectable = Intransmisible.</p>
+          <div class="hidden group-[.flipped]:block pt-3 border-t border-slate-700/80 text-emerald-400 text-sm space-y-2">
+            <p class="font-bold"><i class="fa-solid fa-circle-check mr-1"></i> REALIDAD (I = I):</p>
+            <p class="text-slate-300 text-xs leading-relaxed">Una persona con VIH en tratamiento efectivo que logra mantener su carga viral <strong>Indetectable</strong> por más de 6 meses NO transmite el virus por vía sexual (<strong>Intransmisible</strong>).</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Booking Section -->
+  <section id="agendar" class="py-20 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
+        
+        <div class="bg-gradient-to-r from-brand-800 via-brand-700 to-navy-900 text-white p-8 sm:p-10">
+          <div class="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+            <i class="fa-solid fa-lock text-brand-300"></i> Proceso 100% Anónimo
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Agendar Cita Confidencial para Prueba</h2>
+          <p class="text-brand-100 text-sm mt-2">Puedes usar un seudónimo si lo prefieres. Nos importa tu salud, no tus datos.</p>
+        </div>
+
+        <form id="appointmentForm" onsubmit="handleAppointmentSubmit(event)" class="p-8 sm:p-10 space-y-6">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Nombre o Seudónimo *</label>
+              <input type="text" required placeholder="Ej. Alex M." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Teléfono / WhatsApp (Opcional)</label>
+              <input type="tel" placeholder="Ej. 444 123 4567" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-sm">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Fecha sugerida *</label>
+              <input type="date" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-sm text-slate-700">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Horario preferido *</label>
+              <select required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-sm text-slate-700">
+                <option value="">Selecciona horario</option>
+                <option value="matutino">Mañana (10:00 AM - 1:00 PM)</option>
+                <option value="vespertino">Tarde (3:00 PM - 6:00 PM)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Servicio de Interés</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <label class="border border-slate-200 p-3 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-slate-50 transition-colors">
+                <input type="checkbox" checked class="rounded text-brand-600 focus:ring-brand-500">
+                <span class="text-xs font-semibold text-slate-700">Prueba de VIH</span>
+              </label>
+              <label class="border border-slate-200 p-3 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-slate-50 transition-colors">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span class="text-xs font-semibold text-slate-700">Orientación PrEP/PEP</span>
+              </label>
+              <label class="border border-slate-200 p-3 rounded-xl flex items-center gap-3 cursor-pointer hover:bg-slate-50 transition-colors">
+                <input type="checkbox" class="rounded text-brand-600 focus:ring-brand-500">
+                <span class="text-xs font-semibold text-slate-700">Consejería General</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="bookingResult" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm space-y-2">
+            <p class="font-bold flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-600"></i> Cita Registrada Correctamente</p>
+            <p class="text-xs">Tu código de cita confidencial es: <strong id="bookingCode" class="text-brand-700 bg-white px-2 py-0.5 rounded border border-emerald-300">FG-0000</strong>. Te esperamos en Calle Patria #180, Col. Morales.</p>
+          </div>
+
+          <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-600/20 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i> Confirmar Cita Confidencial
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Location Section -->
+  <section id="nosotros" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- About Info -->
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Nuestra Historia y Misión</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">Fundación Genoveva A.C.</h2>
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            Nacida en honor a <strong>Genoveva Ramos Urrutia</strong>, nuestra organización potosina trabaja incansablemente por la salud sexual integral, el acceso libre y sin barreras a pruebas de detección oportuna y la erradicación social del estigma que rodea al VIH en San Luis Potosí.
+          </p>
+          <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+            Creamos un puente seguro entre la población y los servicios de salud pública, ofreciendo consejería humana, cálida y profesional.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 pt-4">
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <i class="fa-solid fa-bullseye text-brand-600 text-xl mb-2"></i>
+              <h4 class="font-bold text-navy-900 text-sm">Misión</h4>
+              <p class="text-xs text-slate-500 mt-1">Prevenir, educar y apoyar en salud sexual en SLP.</p>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <i class="fa-solid fa-eye text-indigo-600 text-xl mb-2"></i>
+              <h4 class="font-bold text-navy-900 text-sm">Visión</h4>
+              <p class="text-xs text-slate-500 mt-1">Una sociedad potosina libre de estigma e infección por VIH.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location & Contact -->
+        <div id="contacto" class="lg:col-span-6 bg-slate-900 rounded-3xl p-8 text-white space-y-6 shadow-2xl relative">
+          <h3 class="text-2xl font-bold">Ubicación y Contacto Directo</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-600/30 text-brand-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-location-dot text-lg"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Dirección Sede Principal</p>
+                <p class="text-sm font-semibold text-slate-100">Calle Patria #180, Col. Morales</p>
+                <p class="text-xs text-slate-400">San Luis Potosí, S.L.P., México</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-600/30 text-emerald-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-phone text-lg"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Atención Telefónica / WhatsApp</p>
+                <a href="tel:4443009306" class="text-sm font-semibold text-slate-100 hover:text-brand-300 transition-colors">(444) 300-9306</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-indigo-600/30 text-indigo-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-clock text-lg"></i>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase font-semibold tracking-wider">Horario de Atención</p>
+                <p class="text-sm font-semibold text-slate-100">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                <p class="text-xs text-slate-400">Sábados: Previa Cita</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulated Map Visual -->
+          <div class="w-full h-40 bg-slate-800 rounded-2xl border border-slate-700 relative overflow-hidden flex items-center justify-center text-center p-4">
+            <div class="space-y-2">
+              <i class="fa-solid fa-map-location-dot text-3xl text-brand-500 animate-bounce"></i>
+              <p class="text-xs font-semibold text-slate-300">Col. Morales, San Luis Potosí</p>
+              <a href="https://maps.google.com/?q=Calle+Patria+180+Colonia+Morales+San+Luis+Potosi" target="_blank" class="inline-block text-[11px] bg-brand-600 hover:bg-brand-500 text-white font-bold px-3 py-1 rounded-full transition-colors">
+                Abrir en Google Maps <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-slate-400 text-sm py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">
+          <i class="fa-solid fa-ribbon"></i>
+        </div>
+        <span class="text-slate-200 font-bold text-base">Fundación Genoveva A.C.</span>
+      </div>
+      <p class="text-xs text-center md:text-left">
+        &copy; 2026 Fundación Genoveva A.C. — San Luis Potosí. Todos los derechos reservados.
+      </p>
+      <div class="flex gap-4 text-slate-400 text-base">
+        <a href="#" class="hover:text-brand-400"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="hover:text-brand-400"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="hover:text-brand-400"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Gemini AI Chatbot Widget -->
+  <div id="chatbotContainer" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    
+    <!-- Chat Window -->
+    <div id="chatWindow" class="hidden w-[92vw] sm:w-[380px] h-[520px] bg-white rounded-3xl chat-shadow border border-slate-200/80 flex-col overflow-hidden mb-4 transition-all duration-300">
+      
+      <!-- Chat Header -->
+      <div class="bg-gradient-to-r from-navy-900 via-navy-800 to-brand-800 text-white p-4 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <div class="w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white text-lg font-bold border-2 border-white/20">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-navy-900 rounded-full"></span>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm leading-tight text-white">GenoBot - Asistente IA</h4>
+            <p class="text-[10px] text-brand-200">Fundación Genoveva · Orientación 24/7</p>
+          </div>
+        </div>
+        <button onclick="toggleChatbot(false)" class="text-slate-300 hover:text-white p-1 rounded-lg">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Quick Topics Suggestions -->
+      <div class="bg-slate-50 border-b border-slate-100 p-2.5 flex items-center gap-2 overflow-x-auto custom-scrollbar text-[11px] shrink-0">
+        <button onclick="sendQuickMessage('¿Dónde están ubicados y qué horarios tienen?')" class="bg-white hover:bg-brand-50 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors font-medium">📍 Ubicación</button>
+        <button onclick="sendQuickMessage('¿Cómo funciona la prueba rápida de VIH y es realmente anónima?')" class="bg-white hover:bg-brand-50 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors font-medium">🧪 Pruebas</button>
+        <button onclick="sendQuickMessage('¿Qué es el PrEP y el PEP y cómo puedo solicitarlos?')" class="bg-white hover:bg-brand-50 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap transition-colors font-medium">💊 PrEP / PEP</button>
+      </div>
+
+      <!-- Chat Messages Container -->
+      <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar text-xs bg-slate-50/50">
+        <!-- Initial Bot Message -->
+        <div class="flex gap-2 items-start">
+          <div class="w-7 h-7 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">
+            G
+          </div>
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200/80 shadow-sm max-w-[85%] text-slate-700 space-y-1.5">
+            <p><strong>¡Hola! Soy GenoBot 🌸</strong>, el asistente virtual de la Fundación Genoveva.</p>
+            <p>Estoy aquí para responder tus dudas sobre VIH, ITS, pruebas gratuitas, PrEP/PEP, citas o contacto directo en San Luis Potosí de forma 100% confidencial.</p>
+            <p class="text-[10px] text-slate-400 font-semibold pt-1">¿En qué puedo orientarte hoy?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div id="typingIndicator" class="hidden px-4 py-2 bg-slate-50 border-t border-slate-100 text-[11px] text-slate-500 items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-bounce"></span>
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.2s]"></span>
+        <span class="inline-block w-2 h-2 rounded-full bg-brand-500 animate-bounce [animation-delay:0.4s]"></span>
+        <span class="ml-1 text-slate-400">GenoBot está consultando...</span>
+      </div>
+
+      <!-- Chat Input Area -->
+      <form onsubmit="handleChatSubmit(event)" class="p-3 bg-white border-t border-slate-200 flex items-center gap-2 shrink-0">
+        <input id="chatInput" type="text" placeholder="Escribe tu duda aquí..." class="flex-1 bg-slate-100 border border-slate-200 focus:bg-white focus:border-brand-500 rounded-xl px-3 py-2.5 text-xs text-slate-800 outline-none transition-all">
+        <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white w-9 h-9 rounded-xl flex items-center justify-center transition-colors shrink-0">
+          <i class="fa-solid fa-paper-plane text-xs"></i>
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Floating Toggle Button -->
+    <button onclick="toggleChatbot()" class="bg-gradient-to-tr from-brand-700 to-brand-500 hover:scale-105 text-white p-4 rounded-full shadow-2xl shadow-brand-600/40 flex items-center gap-3 transition-all group">
+      <div class="relative">
+        <i class="fa-solid fa-comments text-2xl"></i>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 border-2 border-brand-700 rounded-full"></span>
+      </div>
+      <span class="font-bold text-sm hidden sm:inline pr-2">¿Dudas? Chatea con IA</span>
+    </button>
+
+  </div>
+
+  <script>
+    // --- Mobile Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- Interactive Myth Cards ---
+    function flipCard(cardElement) {
+      cardElement.classList.toggle('flipped');
+    }
+
+    // --- Appointment Form Handler ---
+    function handleAppointmentSubmit(event) {
+      event.preventDefault();
+      const code = 'FG-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('bookingCode').innerText = code;
+      const resultBox = document.getElementById('bookingResult');
+      resultBox.classList.remove('hidden');
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // --- Chatbot UI & Logic ---
+    let isChatOpen = false;
+
+    function toggleChatbot(forceState) {
+      const chatWindow = document.getElementById('chatWindow');
+      isChatOpen = forceState !== undefined ? forceState : !isChatOpen;
+      
+      if (isChatOpen) {
+        chatWindow.classList.remove('hidden');
+        chatWindow.classList.add('flex');
+        document.getElementById('chatInput').focus();
+      } else {
+        chatWindow.classList.add('hidden');
+        chatWindow.classList.remove('flex');
+      }
+    }
+
+    function askBotAbout(topic) {
+      toggleChatbot(true);
+      sendQuickMessage(`Cuéntame más sobre el servicio de ${topic}.`);
+    }
+
+    function sendQuickMessage(text) {
+      document.getElementById('chatInput').value = text;
+      handleChatSubmit(new Event('submit'));
+    }
+
+    function appendMessage(text, isUser = false) {
+      const chatMessages = document.getElementById('chatMessages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `flex gap-2 items-start ${isUser ? 'justify-end' : ''}`;
+
+      if (isUser) {
+        msgDiv.innerHTML = `
+          <div class="bg-brand-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] text-xs shadow-sm">
+            <p>${escapeHtml(text)}</p>
+          </div>
+        `;
+      } else {
+        msgDiv.innerHTML = `
+          <div class="w-7 h-7 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-xs shrink-0 mt-0.5 font-bold">
+            G
+          </div>
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200/80 shadow-sm max-w-[85%] text-slate-700 space-y-1">
+            <p>${formatBotResponse(text)}</p>
+          </div>
+        `;
+      }
+
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function formatBotResponse(text) {
+      // Basic markdown formatting like **bold** to <strong>
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+    }
+
+    function setTyping(isTyping) {
+      const indicator = document.getElementById('typingIndicator');
+      if (isTyping) {
+        indicator.classList.remove('hidden');
+        indicator.classList.add('flex');
+      } else {
+        indicator.classList.add('hidden');
+        indicator.classList.remove('flex');
+      }
+    }
+
+    // --- Gemini API Call Implementation with Exponential Backoff ---
+    async function handleChatSubmit(event) {
+      event.preventDefault();
+      const inputEl = document.getElementById('chatInput');
+      const query = inputEl.value.trim();
+      if (!query) return;
+
+      appendMessage(query, true);
+      inputEl.value = '';
+      setTyping(true);
+
+      const systemPrompt = `
+Eres GenoBot, la inteligencia artificial oficial de asistencia de la "Fundación Genoveva A.C." en San Luis Potosí, México.
+INFORMACIÓN CLAVE DE LA FUNDACIÓN:
+- Nombre: Fundación Genoveva A.C. (en honor a Genoveva Ramos Urrutia).
+- Misión: Prevención del VIH y otras ITS, salud sexual integral, consejería emocional y combate activo al estigma en SLP.
+- Servicios GRATUITOS y CONFIDENCIALES: Pruebas rápidas de detección de VIH (resultados en 15-20 min), orientación para Profilaxis Pre-Exposición (PrEP) y Profilaxis Post-Exposición (PEP), contención emocional y canalización médica a CAPASITS.
+- Ubicación: Calle Patria #180, Col. Morales, San Luis Potosí, S.L.P., México.
+- Teléfono / WhatsApp de atención: 444 300 9306.
+- Horarios: Lunes a Viernes de 9:00 AM a 6:00 PM.
+
+TONO Y REGLAS DE RESPUESTA:
+1. Responde SIEMPRE en español, con un tono cálido, humano, compasivo, respetuoso y libre de juicios morales.
+2. Da respuestas breves, estructuradas y claras (máximo 2 a 3 párrafos cortos).
+3. Recuerda que no sustituyes una consulta médica presencial, pero brinda información con rigor de salud pública.
+4. Si preguntan por emergencias de riesgo de contagio reciente (menos de 72 horas), enfatiza urgentemente acudir por PEP (Profilaxis Post-Exposición).
+5. Promueve agendar una cita confidencial en la fundación.
+`;
+
+      const apiKey = ""; // Canvas runtime injection default
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+      const payload = {
+        contents: [{ parts: [{ text: query }] }],
+        systemInstruction: {
+          parts: [{ text: systemPrompt }]
+        }
+      };
+
+      let attempts = 0;
+      let delay = 1000;
+      let responseText = "";
+
+      while (attempts < 3) {
+        try {
+          const res = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            responseText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            break;
+          }
+        } catch (e) {
+          // Failure silently retries backoff
+        }
+        attempts++;
+        await new Promise(r => setTimeout(r, delay));
+        delay *= 2;
+      }
+
+      setTyping(false);
+
+      if (responseText) {
+        appendMessage(responseText, false);
+      } else {
+        appendMessage("Lo siento, tuve un inconveniente al conectar con el servidor. Puedes llamarnos directamente al (444) 300-9306 o visitarnos en Calle Patria #180, Col. Morales.", false);
+      }
+    }
+  </script>
+</body>
+</html>
